@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>System Usability Scale Survey</title>
+    <style>
+      *{box-sizing:border-box;}
+      body{
+        margin:0;
+        background:#EEF2EF;
+        color:#1B2420;
+        font:18px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      }
+      header{
+        background:#003f88; 
+        color:#fff;
+        padding:20px 16px;
+      }
+      .wrap{
+        max-width:720px;
+        margin:0 auto;
+      }
+      h1{
+        margin:0;
+        font-size:1.6rem;
+        font-family:Georgia,"Times New Roman",serif;
+      }
+      h2{
+        font-family:Georgia,"Times New Roman",serif;
+        margin:0 0 12px;
+      }
+      h2:focus,.summary:focus{outline:none;}
+      main{padding:24px 16px 48px;}
+      .card{
+        background:#fff;
+        border:1px solid #C9D3CE;
+        border-radius:10px;
+        padding:24px;
+        margin-bottom:20px;
+      }
+      .lead{margin-top:0}
+      .hint{
+        display:block;
+        font-size:.9rem;
+        color:#46554E;
+        font-weight:400;
+      }
+      label,legend{font-weight:700}
+      input[type=text]{
+        width:100%;
+        max-width:320px;
+        min-height:48px;
+        padding:8px 12px;
+        font:inherit;
+        border:2px solid #66756E;
+        border-radius:8px;
+        background:#fff;
+        margin-top:6px;
+      }
+      input[type=text]:hover{border-color:#1B2420}
+      :focus-visible{
+        outline:3px solid #0B57D0;
+        outline-offset:2px;
+      }
+      fieldset{
+        border:0;
+        margin:0 0 22px;
+        padding:0;
+        min-width:0;
+      }
+      fieldset.bad{
+        border-left:4px solid #B3261E;
+        padding-left:12px;
+      }
+      legend{
+        padding:0;
+        margin-bottom:8px;
+      }
+      .scale{
+        display:grid;
+        grid-template-columns:repeat(5,1fr);
+        gap:8px;
+      }
+      .opt{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:4px;
+        min-height:68px;
+        padding:6px 2px;
+        border:2px solid #66756E;
+        border-radius:8px;
+        background:#fff;
+        font-weight:400;
+        cursor:pointer;
+        text-align:center;
+      }
+      .opt:hover{
+        border-color:#1B2420;
+        background:#F4F7F5;
+      }
+      .opt:active{background:#E3EAE6;}
+      .opt:has(input:checked){
+        border-color:#003f88;
+        background:#E6F0EB;
+        font-weight:700;
+      }
+      .opt:has(input:focus-visible){
+        outline:3px solid #0B57D0;
+        outline-offset:2px;
+      }
+      .opt input{
+        width:24px;
+        height:24px;
+        margin:0;
+        accent-color:#003f88;
+      }
+      .opt small{
+        font-size:.8rem;
+        line-height:1.2;
+        color:#46554E;
+        min-height:1em;
+      }
+      .err{
+        margin:6px 0 0;
+        color:#B3261E;
+        font-weight:700;
+        font-size:.95rem;
+      }
+      .err:empty{display:none;}
+      .summary{
+        background:#FCEDEC;
+        border:2px solid #B3261E;
+        border-radius:8px;
+        padding:14px 16px;
+        margin-bottom:20px;
+      }
+      .summary h2{
+        font-size:1.1rem;
+        color:#B3261E;
+        margin-bottom:6px;
+      }
+      .summary ul{
+        margin:0;
+        padding-left:20px;
+      }
+      .summary a{
+        color:#B3261E;
+        font-weight:700;
+      }
+      .btn{
+        min-height:48px;
+        min-width:48px;
+        padding:10px 22px;
+        font:inherit;
+        font-weight:700;
+        border-radius:8px;
+        border:2px solid #003f88;
+        background:#003f88;
+        color:#fff;
+        cursor:pointer;
+        margin:4px 8px 4px 0;
+      }
+      .btn:hover{background:#163A30;}
+      .btn:active{background:#0F2A22;}
+      .btn.sec{
+        background:#fff;
+        color:#003f88;
+      }
+      .btn.sec:hover{background:#E6F0EB;}
+      details{
+        border:2px solid #66756E;
+        border-radius:8px;
+        padding:8px 14px;
+        margin-top:20px;
+      }
+      summary{
+        font-weight:700;
+        min-height:44px;
+        display:flex;
+        align-items:center;
+        cursor:pointer;
+      }
+      table{
+        border-collapse:collapse;
+        width:100%;
+        margin:12px 0;
+        font-size:.95rem;
+      }
+      th,td{
+        border:1px solid #66756E;
+        padding:6px 8px;
+        text-align:left;
+      }
+      th{background:#DCE9E3;}
+      textarea{
+        width:100%;
+        min-height:90px;
+        font:14px/1.4 ui-monospace,Menlo,Consolas,monospace;
+        border:2px solid #66756E;
+        border-radius:8px;
+        padding:8px;
+      }
+      .score{
+        font-size:2rem;
+        font-weight:700;
+        margin:4px 0;
+      }
+      footer{
+        padding:0 16px 32px;
+        font-size:.9rem;
+        color:#46554E;
+      }
+      @media (max-width:480px){body{font-size:17px}.card{padding:16px}.opt small{font-size:.72rem}}
+    </style>
+  </head>
+  <body>
+    <header><div class="wrap"><h1>System Usability Scale</h1></div></header>
+    <main id="main"><div class="wrap">
+    <noscript><p>This questionnaire needs JavaScript. Ask the moderator for a paper copy.</p></noscript>
+    <section id="formsec" class="card" aria-labelledby="formh">
+      <h2 id="formh">Your experience with the page you just used</h2>
+      <p class="lead">Choose the number that matches how much you agree with each statement. There are no right or wrong answers. Your answers stay in this browser and are not sent anywhere.</p>
+      <div id="errsum" class="summary" role="alert" tabindex="-1" hidden></div>
+      <form id="f" novalidate>
+        <div class="field" style="margin-bottom:22px">
+          <label for="pid">Participant ID <span class="hint">The moderator will give you this, for example P01</span></label>
+          <input type="text" id="pid" name="pid" autocomplete="off" aria-describedby="pid-err" required>
+          <p class="err" id="pid-err"></p>
+        </div>
+        <div id="items"></div>
+        <button type="submit" class="btn">Submit answers</button>
+      </form>
+    </section>
+
+    <section id="done" class="card" aria-labelledby="doneh" hidden>
+      <h2 id="doneh" tabindex="-1">Thank you</h2>
+      <p>You have finished the questionnaire. Please tell the moderator.</p>
+      <details id="mod">
+        <summary>Moderator only: results</summary>
+        <p class="score" id="score"></p>
+        <p id="interp"></p>
+        <table><caption class="hint" style="text-align:left">Score contributions (odd items: rating minus 1; even items: 5 minus rating)</caption>
+          <thead><tr><th scope="col">Item</th><th scope="col">Rating</th><th scope="col">Contribution</th></tr></thead><tbody id="contrib"></tbody></table>
+        <label for="csv">CSV row for the logging sheet</label>
+        <textarea id="csv" readonly></textarea>
+        <p><button type="button" class="btn" id="copy">Copy CSV row</button><button type="button" class="btn sec" id="dl">Download CSV</button></p>
+        <p id="msg" role="status" aria-live="polite"></p>
+      </details>
+      <p><button type="button" class="btn sec" id="again">Start a new response</button></p>
+    </section>
+    </div></main>
+    <footer><div class="wrap">System Usability Scale by John Brooke (1986). Scoring: odd items rating minus 1, even items 5 minus rating, sum times 2.5.</div></footer>
+
+    <script>
+    const ITEMS=["I think that I would like to use this system frequently.","I found the system unnecessarily complex.","I thought the system was easy to use.","I think that I would need the support of a technical person to be able to use this system.","I found the various functions in this system were well integrated.","I thought there was too much inconsistency in this system.","I would imagine that most people would learn to use this system very quickly.","I found the system very cumbersome to use.","I felt very confident using the system.","I needed to learn a lot of things before I could get going with this system."];
+    const $=id=>document.getElementById(id);
+    $("items").innerHTML=ITEMS.map((t,i)=>{const n=i+1;
+      const opts=[1,2,3,4,5].map(v=>`<label class="opt" for="q${n}-${v}"><input type="radio" id="q${n}-${v}" name="q${n}" value="${v}"><span>${v}</span><small>${v===1?"Strongly disagree":v===5?"Strongly agree":""}</small></label>`).join("");
+      return `<fieldset id="fs${n}" aria-describedby="err${n}"><legend>${n}. ${t}</legend><div class="scale">${opts}</div><p class="err" id="err${n}"></p></fieldset>`;}).join("");
+
+    const contribution=(r,i)=>(i%2===0)?r-1:5-r;          // i is 0-based: item 1 is odd
+    const susScore=a=>a.reduce((s,r,i)=>s+contribution(r,i),0)*2.5;
+
+    function validate(){
+      const errs=[];
+      const pid=$("pid"); const okPid=pid.value.trim().length>0;
+      $("pid-err").textContent=okPid?"":"Enter the participant ID the moderator gave you.";
+      pid.setAttribute("aria-invalid",String(!okPid));
+      if(!okPid) errs.push({t:"Participant ID is empty.",id:"pid"});
+      ITEMS.forEach((_,i)=>{const n=i+1, ok=!!document.querySelector(`input[name=q${n}]:checked`);
+        $("err"+n).textContent=ok?"":"Choose a number from 1 to 5 for this statement.";
+        $("fs"+n).classList.toggle("bad",!ok);
+        if(!ok) errs.push({t:`Statement ${n} has no answer.`,id:`q${n}-1`});});
+      return errs;
+    }
+    function showErrors(errs){
+      const s=$("errsum");
+      if(!errs.length){s.hidden=true;s.innerHTML="";return;}
+      s.innerHTML=`<h2>${errs.length} ${errs.length===1?"answer needs":"answers need"} your attention</h2><ul>`+errs.map(e=>`<li><a href="#${e.id}" data-t="${e.id}">${e.t}</a></li>`).join("")+"</ul>";
+      s.hidden=false; s.focus();
+    }
+    document.addEventListener("click",e=>{const a=e.target.closest("#errsum a"); if(a){e.preventDefault();$(a.dataset.t).focus();}});
+    $("f").addEventListener("change",e=>{ if(e.target.name&&e.target.name.startsWith("q")){const n=e.target.name.slice(1);$("err"+n).textContent="";$("fs"+n).classList.remove("bad");}});
+    $("pid").addEventListener("input",()=>{ if($("pid").value.trim()){ $("pid-err").textContent=""; $("pid").setAttribute("aria-invalid","false"); }});
+
+    $("f").addEventListener("submit",e=>{
+      e.preventDefault();
+      const errs=validate(); showErrors(errs); if(errs.length) return;
+      const a=ITEMS.map((_,i)=>Number(document.querySelector(`input[name=q${i+1}]:checked`).value));
+      const sc=susScore(a), id=$("pid").value.trim();
+      $("score").textContent=`SUS score: ${sc} out of 100`;
+      $("interp").textContent=sc>=68?"At or above the commonly cited average of about 68.":"Below the commonly cited average of about 68.";
+      $("contrib").innerHTML=a.map((r,i)=>`<tr><td>${i+1}</td><td>${r}</td><td>${contribution(r,i)}</td></tr>`).join("");
+      const head=["Participant_ID","Timestamp",...a.map((_,i)=>"SUS_"+String(i+1).padStart(2,"0")),"SUS_Score"].join(",");
+      const row=[`"${id.replace(/"/g,'""')}"`,new Date().toISOString(),...a,sc].join(",");
+      $("csv").value=head+"\n"+row;
+      $("formsec").hidden=true; $("done").hidden=false; $("mod").open=false; $("msg").textContent="";
+      $("doneh").focus(); window.scrollTo({top:0});
+    });
+    $("copy").addEventListener("click",async()=>{
+      try{await navigator.clipboard.writeText($("csv").value);$("msg").textContent="CSV row copied.";}
+      catch(_){$("csv").select();$("msg").textContent="Press Ctrl+C or Command+C to copy the selected text.";}
+    });
+    $("dl").addEventListener("click",()=>{
+      const b=new Blob([$("csv").value+"\n"],{type:"text/csv"}), u=URL.createObjectURL(b), l=document.createElement("a");
+      l.href=u; l.download=`sus_${$("pid").value.trim()||"response"}.csv`; document.body.appendChild(l); l.click(); l.remove(); URL.revokeObjectURL(u);
+      $("msg").textContent="CSV file downloaded.";
+    });
+    $("again").addEventListener("click",()=>{
+      $("f").reset(); $("done").hidden=true; $("formsec").hidden=false;
+      document.querySelectorAll(".err").forEach(x=>x.textContent=""); document.querySelectorAll(".bad").forEach(x=>x.classList.remove("bad"));
+      $("pid").removeAttribute("aria-invalid"); showErrors([]); $("pid").focus();
+    });
+    </script>
+  </body>
+</html>
